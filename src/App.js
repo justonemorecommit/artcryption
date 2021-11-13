@@ -1,18 +1,7 @@
-import { Card, Container, Grid } from "@material-ui/core";
+import Layout from "./Components/Layout";
 
-function App() {
-  return (
-    <Container>
-      <Card>
-        <Grid container fluid>
-          <Grid item md={6}>
-            <img src="/images/image.jpeg" />
-          </Grid>
-          <Grid item md={6}></Grid>
-        </Grid>
-      </Card>
-    </Container>
-  );
-}
+const App = () => {
+  return <Layout />;
+};
 
 export default App;
