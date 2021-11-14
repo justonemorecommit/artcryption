@@ -1,11 +1,33 @@
 import Layout from "./Components/Layout";
-import { BrowserRouter } from "react-router-dom";
+import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import { grey } from "@material-ui/core/colors";
+
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+
+import FeaturedCurators from "./Containers/FeaturedCurators";
+
+const theme = createTheme({
+  palette: {
+    primary: { main: "#000" },
+  },
+  typography: {
+    button: {
+      textTransform: "none",
+    },
+  },
+});
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Layout />
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Layout>
+          <Routes>
+            <Route path="/featured-curators" element={<FeaturedCurators />} />
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 };
 

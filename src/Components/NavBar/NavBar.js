@@ -6,6 +6,8 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import { List, ListItem } from "@material-ui/core";
 
+import logo from "../Logo/LogoLight.svg";
+
 import {
   Accordion,
   AccordionDetails,
@@ -32,7 +34,7 @@ const menus = [
       { title: "Profile Page" },
       { title: "Feed" },
       { title: "Featured Users" },
-      { title: "Featured Curators" },
+      { title: "Featured Curators", path: "/featured-curators" },
       { title: "Support, Help & FAQs" },
       { title: "Agreements" },
     ],
@@ -59,7 +61,13 @@ export default function NavBar({ onClose }) {
 
   return (
     <div>
-      <Box display="flex" justifyContent="end">
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        paddingLeft={1}
+        paddingTop={1}
+      >
+        <img src={logo} />
         <IconButton onClick={onClose}>
           <ChevronLeftIcon />
           <Box position="absolute" style={{ left: "8px", top: "12px" }}>
@@ -86,7 +94,7 @@ export default function NavBar({ onClose }) {
               <List>
                 {menu.children.map((item, index) => (
                   <ListItem key={index}>
-                    <NavLink to="/url">{item.title}</NavLink>
+                    <NavLink to={item.path || "/url"}>{item.title}</NavLink>
                   </ListItem>
                 ))}
               </List>

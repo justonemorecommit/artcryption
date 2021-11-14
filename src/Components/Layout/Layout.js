@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import NavBar from "../NavBar";
+import logo from "../Logo/LogoDark.svg";
 
 const drawerWidth = 336;
 
@@ -90,11 +91,13 @@ export default function Layout(props) {
       <CssBaseline />
       <AppBar
         position="fixed"
+        color="transparent"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
       >
         <Toolbar>
+          {!open && <img src={logo} />}
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -104,9 +107,7 @@ export default function Layout(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap>
-            Persistent drawer
-          </Typography>
+          <Typography variant="h6" noWrap></Typography>
         </Toolbar>
       </AppBar>
       <Drawer
