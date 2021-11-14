@@ -9,6 +9,7 @@ import FeaturedCurators from "./Containers/FeaturedCurators";
 const theme = createTheme({
   palette: {
     primary: { main: "#000" },
+    secondary: { main: "#BAE5F8" },
   },
   typography: {
     button: {

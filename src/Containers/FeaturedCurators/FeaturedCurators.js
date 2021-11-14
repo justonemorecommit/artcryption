@@ -18,10 +18,12 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import Image from "material-ui-image";
 import {
   Add as AddIcon,
   Create as EditIcon,
   Image as ImageIcon,
+  ShoppingCart as PurchaseIcon,
 } from "@material-ui/icons";
 
 import CuratorCard from "./CuratorCard";
@@ -37,9 +39,13 @@ const curators = [
 export default function FeaturedCurators(props) {
   const {} = props;
   const [open, setOpen] = useState(false);
+  const [purchaseOpen, setPurchaseOpen] = useState(false);
   const [keyword, setKeyword] = useState("");
   const searchedList = useMemo(
-    () => curators.filter((title) => title.search(keyword) >= 0),
+    () =>
+      curators.filter(
+        (title) => title.toLowerCase().search(keyword.toLowerCase()) >= 0
+      ),
     [keyword]
   );
 
@@ -54,7 +60,7 @@ export default function FeaturedCurators(props) {
             </IconButton>
           </Box>
         </Box>
-        <Box marginLeft="auto">
+        <Box marginLeft="auto" display="flex" alignItems="center">
           <Button
             color="primary"
             variant="contained"
@@ -62,6 +68,15 @@ export default function FeaturedCurators(props) {
           >
             <AddIcon />
             Add a curator
+          </Button>
+          <Box marginRight={1}></Box>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={() => setPurchaseOpen(true)}
+          >
+            <PurchaseIcon />
+            Purchase
           </Button>
         </Box>
       </Box>
@@ -124,6 +139,70 @@ export default function FeaturedCurators(props) {
             variant="contained"
             autoFocus
           >
+            Create
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Dialog
+        open={purchaseOpen}
+        onClose={() => setPurchaseOpen(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          <Box display="flex" alignItems="center" borderBottom="1px solid #eee">
+            <Typography variant="h5">Purchase</Typography>
+            <Box marginLeft="auto">
+              <List>
+                <ListItem>
+                  <ListItemText
+                    primary="2.00ETH"
+                    secondary="Nov 2, 2021"
+                  ></ListItemText>
+                </ListItem>
+              </List>
+            </Box>
+          </Box>
+        </DialogTitle>
+        <DialogContent>
+          <Grid container>
+            <Grid item md={3}>
+              <List>
+                <ListItem>
+                  <ListItemAvatar>
+                    <ImageIcon />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary="Vandana Taxali"
+                    secondary="Transferor"
+                  ></ListItemText>
+                </ListItem>
+                <ListItem>
+                  <ListItemAvatar>
+                    <ImageIcon />
+                  </ListItemAvatar>
+                  <ListItemText
+                    primary="Rachel Nguen"
+                    secondary="Transferee"
+                  ></ListItemText>
+                </ListItem>
+              </List>
+            </Grid>
+            <Grid item md={9}>
+              <Box width="500px" padding={2}>
+                <Button variant="contained" color="secondary">
+                  Purchase
+                </Button>
+                <Image src="/images/paella.jpg" title="Demo Image" />
+              </Box>
+            </Grid>
+          </Grid>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpen(false)} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={() => setOpen(false)} variant="contained" autoFocus>
             Create
           </Button>
         </DialogActions>
