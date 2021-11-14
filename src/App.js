@@ -2,7 +2,7 @@ import Layout from "./Components/Layout";
 import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 import { grey } from "@material-ui/core/colors";
 
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 
 import FeaturedCurators from "./Containers/FeaturedCurators";
 import { Typography } from "@material-ui/core";
@@ -25,7 +25,7 @@ const theme = createTheme({
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
+      <HashRouter>
         <Layout>
           <Routes>
             <Route path="/featured-curators" element={<FeaturedCurators />} />
@@ -35,7 +35,7 @@ const App = () => {
             />
           </Routes>
         </Layout>
-      </BrowserRouter>
+      </HashRouter>
     </ThemeProvider>
   );
 };
