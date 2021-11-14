@@ -25,7 +25,7 @@ export default function CuratorCard(props) {
       <Box padding={1}>
         <CardMedia
           className={classes.media}
-          image="/images/paella.jpg"
+          image="./images/paella.jpg"
           title="Demo Image"
         />
       </Box>

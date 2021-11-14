@@ -199,7 +199,7 @@ export default function FeaturedCurators(props) {
                 </Button>
                 <Box marginTop={2}>
                   <img
-                    src="/images/paella.jpg"
+                    src="./images/paella.jpg"
                     title="Demo Image"
                     height="300px"
                     imageStyle={{ width: "300px", height: "auto" }}
