@@ -216,7 +216,12 @@ export default function FeaturedCurators(props) {
           <Button onClick={() => setOpen(false)} color="primary">
             Cancel
           </Button>
-          <Button onClick={() => setOpen(false)} variant="contained" autoFocus>
+          <Button
+            onClick={() => setOpen(false)}
+            variant="contained"
+            autoFocus
+            color="primary"
+          >
             Create
           </Button>
         </DialogActions>

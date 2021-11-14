@@ -5,6 +5,9 @@ import { grey } from "@material-ui/core/colors";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 import FeaturedCurators from "./Containers/FeaturedCurators";
+import { Typography } from "@material-ui/core";
+
+import "./App.css";
 
 const theme = createTheme({
   palette: {
@@ -12,6 +15,7 @@ const theme = createTheme({
     secondary: { main: "#BAE5F8" },
   },
   typography: {
+    fontFamily: `Inter, "Helvetica", "Arial", sans-serif`,
     button: {
       textTransform: "none",
     },
@@ -25,6 +29,10 @@ const App = () => {
         <Layout>
           <Routes>
             <Route path="/featured-curators" element={<FeaturedCurators />} />
+            <Route
+              path="/meta-data"
+              element={<Typography>Meta data page</Typography>}
+            />
           </Routes>
         </Layout>
       </BrowserRouter>
