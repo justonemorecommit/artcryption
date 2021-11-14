@@ -1,16 +1,13 @@
 import React from "react";
 import clsx from "clsx";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import NavBar from "../NavBar";
 
 const drawerWidth = 336;
@@ -42,6 +39,13 @@ const useStyles = makeStyles((theme) => ({
   drawer: {
     width: drawerWidth,
     flexShrink: 0,
+    "& .MuiPaper-root": {
+      backgroundColor: "#000",
+      color: "#fff",
+    },
+    "& .MuiIconButton-root": {
+      color: "rgba(255, 255, 255, 0.8)",
+    },
   },
   drawerPaper: {
     width: drawerWidth,
@@ -75,15 +79,10 @@ const useStyles = makeStyles((theme) => ({
 export default function Layout(props) {
   const { children } = props;
   const classes = useStyles();
-  const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
   };
 
   return (
@@ -119,7 +118,7 @@ export default function Layout(props) {
           paper: classes.drawerPaper,
         }}
       >
-        <NavBar />
+        <NavBar onClose={() => setOpen(false)} />
       </Drawer>
       <main
         className={clsx(classes.content, {

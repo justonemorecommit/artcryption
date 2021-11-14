@@ -1,104 +1,99 @@
-import * as React from "react";
-import { styled } from "@material-ui/core/styles";
-import ArrowForwardIosSharpIcon from "@material-ui/icons/ArrowForwardIosSharp";
-import MuiAccordion from "@material-ui/core/Accordion";
-import MuiAccordionSummary from "@material-ui/core/AccordionSummary";
-import MuiAccordionDetails from "@material-ui/core/AccordionDetails";
+import React from "react";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
+import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import { List, ListItem } from "@material-ui/core";
 
-const Accordion = styled((props) => (
-  <MuiAccordion disableGutters elevation={0} square {...props} />
-))(({ theme }) => ({
-  border: `1px solid ${theme.palette.divider}`,
-  "&:not(:last-child)": {
-    borderBottom: 0,
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  NavLink,
+} from "./NavBar.styles";
+
+const menus = [
+  {
+    title: "Settings",
+    children: [
+      { title: "Notifications" },
+      { title: "Service Fees" },
+      { title: "Resale Royalitics" },
+      { title: "Plans & Pricing" },
+    ],
   },
-  "&:before": {
-    display: "none",
+  {
+    title: "PageManagement",
+    children: [
+      { title: "Page Management" },
+      { title: "Welcome" },
+      { title: "Home" },
+      { title: "Profile Page" },
+      { title: "Feed" },
+      { title: "Featured Users" },
+      { title: "Featured Curators" },
+      { title: "Support, Help & FAQs" },
+      { title: "Agreements" },
+    ],
   },
-}));
-
-const AccordionSummary = styled((props) => (
-  <MuiAccordionSummary
-    expandIcon={<ArrowForwardIosSharpIcon sx={{ fontSize: "0.9rem" }} />}
-    {...props}
-  />
-))(({ theme }) => ({
-  backgroundColor:
-    theme.palette.mode === "dark"
-      ? "rgba(255, 255, 255, .05)"
-      : "rgba(0, 0, 0, .03)",
-  flexDirection: "row-reverse",
-  "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
-    transform: "rotate(90deg)",
+  {
+    title: "Transactions",
+    children: [{ title: "Menu1" }, { title: "Menu2" }],
   },
-  "& .MuiAccordionSummary-content": {
-    marginLeft: theme.spacing(1),
-  },
-}));
 
-const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
-  padding: theme.spacing(2),
-  borderTop: "1px solid rgba(0, 0, 0, .125)",
-}));
+  { title: "IP Case Management" },
+  { title: "Analytics" },
+  { title: "Chat" },
+  { title: "User Reports" },
+  { title: "Logs/Errors" },
+  { title: "Roadmap" },
+];
 
-export default function NavBar() {
-  const [expanded, setExpanded] = React.useState("panel1");
+export default function NavBar({ onClose }) {
+  const [expanded, setExpanded] = React.useState({});
 
-  const handleChange = (panel) => (event, newExpanded) => {
-    setExpanded(newExpanded ? panel : false);
+  const setListExpanded = (panel, value) => {
+    setExpanded({ ...expanded, [panel]: value });
   };
 
   return (
     <div>
-      <Accordion
-        expanded={expanded === "panel1"}
-        onChange={handleChange("panel1")}
-      >
-        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <Typography>Collapsible Group Item #1</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion
-        expanded={expanded === "panel2"}
-        onChange={handleChange("panel2")}
-      >
-        <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-          <Typography>Collapsible Group Item #2</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-      <Accordion
-        expanded={expanded === "panel3"}
-        onChange={handleChange("panel3")}
-      >
-        <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-          <Typography>Collapsible Group Item #3</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
+      <Box display="flex" justifyContent="end">
+        <IconButton onClick={onClose}>
+          <ChevronLeftIcon />
+          <Box position="absolute" style={{ left: "8px", top: "12px" }}>
+            <ChevronLeftIcon />
+          </Box>
+        </IconButton>
+      </Box>
+      {menus.map((menu, index) => (
+        <Accordion
+          key={index}
+          square
+          expanded={!!expanded[index]}
+          onChange={() => setListExpanded(index, !expanded[index])}
+        >
+          <AccordionSummary
+            aria-controls="panel1d-content"
+            id="panel1d-header"
+            expandIcon={menu.children ? <ExpandMoreIcon /> : null}
+          >
+            <Typography>{menu.title}</Typography>
+          </AccordionSummary>
+          {menu.children && (
+            <AccordionDetails>
+              <List>
+                {menu.children.map((item, index) => (
+                  <ListItem key={index}>
+                    <NavLink to="/url">{item.title}</NavLink>
+                  </ListItem>
+                ))}
+              </List>
+            </AccordionDetails>
+          )}
+        </Accordion>
+      ))}
     </div>
   );
 }
