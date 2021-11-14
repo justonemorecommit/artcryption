@@ -8,12 +8,9 @@ import { List, ListItem } from "@material-ui/core";
 
 import logo from "../Logo/LogoLight.svg";
 
-import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  NavLink,
-} from "./NavBar.styles";
+import NavLink from "../AppLink";
+
+import { Accordion, AccordionDetails, AccordionSummary } from "./NavBar.styles";
 
 const menus = [
   {

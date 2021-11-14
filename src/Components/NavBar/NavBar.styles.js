@@ -46,12 +46,3 @@ export const AccordionDetails = withStyles((theme) => ({
     paddingLeft: theme.spacing(2),
   },
 }))(MuiAccordionDetails);
-
-export const NavLink = styled(Link)`
-  color: #fff;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;

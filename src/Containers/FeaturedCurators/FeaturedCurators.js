@@ -5,7 +5,6 @@ import {
   Button,
   IconButton,
   Grid,
-  Modal,
   TextField,
   Avatar,
   List,
@@ -26,7 +25,11 @@ import {
   ShoppingCart as PurchaseIcon,
 } from "@material-ui/icons";
 
+import AppLink from "../../Components/AppLink";
+
 import CuratorCard from "./CuratorCard";
+
+import { CardLink } from "./FeaturedCard.styles";
 
 const curators = [
   "Curator Apple",
@@ -148,6 +151,7 @@ export default function FeaturedCurators(props) {
         onClose={() => setPurchaseOpen(false)}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
+        maxWidth="lg"
       >
         <DialogTitle id="alert-dialog-title">
           <Box display="flex" alignItems="center" borderBottom="1px solid #eee">
@@ -189,11 +193,21 @@ export default function FeaturedCurators(props) {
               </List>
             </Grid>
             <Grid item md={9}>
-              <Box width="500px" padding={2}>
+              <Box width="600px" padding={2}>
                 <Button variant="contained" color="secondary">
                   Purchase
                 </Button>
-                <Image src="/images/paella.jpg" title="Demo Image" />
+                <Box marginTop={2}>
+                  <img
+                    src="/images/paella.jpg"
+                    title="Demo Image"
+                    height="300px"
+                    imageStyle={{ width: "300px", height: "auto" }}
+                  />
+                  <Typography>Title</Typography>
+                  <Typography>Type of the assets</Typography>
+                  <CardLink to="/meta-data">Click to see metadata</CardLink>
+                </Box>
               </Box>
             </Grid>
           </Grid>
